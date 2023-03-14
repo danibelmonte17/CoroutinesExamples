@@ -12,7 +12,43 @@ fun main() {
     //terminalFlowOperators()
     //bufferFlow()
     //conflationFlow()
-    multiFlow()
+    //multiFlow()
+    flatFlows()
+}
+
+fun flatFlows() {
+    runBlocking {
+        newTopic("Flujos de aplanamiento")
+        newTopic("FlatMapConcat")
+        getCitiesFlow().flatMapConcat { city -> //Flow<Flow<TYPE>>
+            getDataFlatFlow(city)
+        }.map {
+            setFormat(it)
+        }.collect{ println(it) }
+        newTopic("FlatMapMerge")
+        getCitiesFlow().flatMapMerge { city -> //Flow<Flow<TYPE>>
+            getDataFlatFlow(city)
+        }.map {
+            setFormat(it)
+        }.collect{ println(it) }
+    }
+}
+
+fun getDataFlatFlow(city: String): Flow<Float> = flow {
+    //(1..3).forEach {
+        println("Temperatura de ayer en $city")
+        emit(Random.nextInt(10, 30).toFloat())
+        println("Temperatura actual en $city")
+        delay(100)
+        emit(20 + 1 + Random.nextFloat())
+    //}
+}
+
+fun getCitiesFlow() : Flow<String> = flow {
+    listOf("Santander", "Almeria", "Huelva","Madrid","Barcelona").forEach { city ->
+        delay(1000)
+        emit(city)
+    }
 }
 
 fun multiFlow(){
