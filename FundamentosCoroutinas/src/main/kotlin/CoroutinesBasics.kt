@@ -4,20 +4,20 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.produce
 
 fun main() {
-//    globalScope()
+    globalScope()
 //    suspendFun()
 //
 //    newTopic("Constructores de coroutinas")
 //    cRunBlocking()
 //    cLaunch()
 //    cAsync()
-    cProduce()
+    //cProduce()
 
     //job()
 
     //deferred()
 
-    readln()
+    //readln()
 }
 
 fun cProduce() = runBlocking {

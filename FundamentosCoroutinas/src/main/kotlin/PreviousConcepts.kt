@@ -7,13 +7,13 @@ import kotlin.random.Random
 
 fun main(){
 
-    lambda()
+    //lambda()
 
-    multiLambda(3, 3) { result ->
+    /*multiLambda(3, 3) { result ->
         println(result)
-    }
+    }*/
 
-    threads()
+    //threads()
 
     coroutinesVsThreads()
 
